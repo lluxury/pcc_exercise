@@ -11,6 +11,8 @@ print("\nI found a bigger dining table")
 guests_list.insert(0, 'first')
 guests_list.insert(2, 'middle')
 guests_list.append('last')
+number = len(guests_list)
+print("I invited " + str(number) + " people to dinner")
 for name in guests_list:
     print("I would like to invite " + name + " to dinner")
 print("\nI could only invite two guest for dinner.")
