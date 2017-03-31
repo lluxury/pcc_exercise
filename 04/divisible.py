@@ -1,0 +1,5 @@
+numbers = [value for value in range(3,31,3)]
+for number in numbers:
+    print(number)
+
+#value不能用,局部变量
