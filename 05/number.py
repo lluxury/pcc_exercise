@@ -1,15 +1,16 @@
-numbers = [i for i in [1-9]
-new_users = ['dqx', 'bql', 'xyz1', 'txo', 'admin']
+numbers = list(range(1,10))
     
-if new_users:
+if numbers:
         #print('We need to find some users!')
-    for new_user in new_users:
+    for number in numbers:
 
-        if new_user.lower() in  numbers:
-  i for i in [1-9st')
+        if int(number) ==  1:
+            print(str(number) + 'st')
+        elif int(number) ==  2:
+            print( str(number)  +'nd')
         else:
-            print('Hello ' + new_user +', is avilable')
+            print( str(number)  +'st')
 else:
     print('We need to find some users!')
 
-#注意列表的表达方式
+#注意数列的生成方法
