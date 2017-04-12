@@ -1,4 +1,4 @@
-sandwich_orders = ['Bacon','Bacon, egg and cheese','Bagel toast']
+sandwich_orders = ['Bacon','Bacon, egg and cheese','Bagel toast',]
 finished_sandwiches = []
 while sandwich_orders:
     sandwich = sandwich_orders.pop()
