@@ -1,6 +1,6 @@
 
-def make_album(name, album='China'):
-    album_list = {name:album}
+def make_album(name, album='L.P', number=''):
+    album_list = {'name':name,'album':album,'number':number}
     print (album_list)
     return album_list
 
@@ -10,7 +10,7 @@ print(care)
 xiaoxin = make_album('bj')
 #print(xiaoxin)
 
-zhu=make_album('tokyo','jp')
+zhu=make_album('zdmx','xzc','8')
 print(zhu)
 
 #print (album_list)
