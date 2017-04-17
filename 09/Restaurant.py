@@ -29,6 +29,15 @@ class Restaurant():
         print(self.number_served)
         pass
 
+class IceCreamStand(Restaurant):
+    """继承下来的只有2项属性"""
+    def __init__(self, restaurant_name, cuisine_type):
+        super().__init__(restaurant_name, cuisine_type)
+        self.flavors = ['egg','mlong']
+        
+    def IceCreamStand(self):
+        '''list'''
+        print(self.flavors)
 
 
 my_Restaurant=Restaurant('weilian', '6')
@@ -48,3 +57,8 @@ my_Restaurant.increment_number_served(18)
 my_Restaurant.read_number()
 
 #函数的操作要通过函数调用,读,改
+
+my_icecreamstand=IceCreamStand('bsk','pizza')
+my_icecreamstand.IceCreamStand()
+
+#不是入口的参数如何关联,待解决, TypeError: 'str' object is not callable
