@@ -22,3 +22,7 @@ print ("my user's first_name is " + my_user.first_name.title())
 print ("my user's last_name is " + my_user.last_name.title())
 my_user.describe_user()
 my_user.greet_user()
+
+my_user1=user('wangzi', 'x','6','y')
+my_user1.describe_user()
+my_user1.greet_user()
