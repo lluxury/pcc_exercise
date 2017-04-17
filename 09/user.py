@@ -30,10 +30,9 @@ class user():
         self.login_attempts=0
         pass
 
-class Admin(user):
-    """只有入口的参数才能self赋值"""
-    def __init__(self, first_name, last_name, age, gender):
-        super().__init__(first_name, last_name, age, gender)
+class privileges():
+    """docstring for privileges"""
+    def __init__(self):
         #self.arg = arg
         self.privileges = ["can add post" ,"can delete post" ,"can ban user"]
         
@@ -41,6 +40,15 @@ class Admin(user):
         '''show privileges'''
         print(self.privileges)
         pass
+
+class Admin(user):
+    """只有入口的参数才能self赋值"""
+    def __init__(self, first_name, last_name, age, gender):
+        super().__init__(first_name, last_name, age, gender)
+        #self.arg = arg x
+        #self.privileges()=privileges() x
+        self.privileges=privileges()
+
 my_user=user('weilian', 'x','6','y')
 print ("my user's first_name is " + my_user.first_name.title())
 print ("my user's last_name is " + my_user.last_name.title())
@@ -58,4 +66,4 @@ my_user1.reset_login_attempts()
 my_user1.read_login_attemps()
 
 my_user2=Admin('admin','x','u','xx')
-my_user2.show_privileges()
+my_user2.privileges.show_privileges()
