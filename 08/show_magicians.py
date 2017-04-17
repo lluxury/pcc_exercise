@@ -7,7 +7,8 @@ def show_magicians(names):
 def make_great(old,new):
     '''plus the great for each element in old list'''
     while old:
-        change_one = old.pop()
+        no_change = old[:]
+        change_one = no_change.pop()
         change_one = 'the great' + change_one
         new.append(change_one)
         pass
@@ -17,6 +18,7 @@ def make_great(old,new):
 name_list = ['dwfeb', 'lj', 'bdp']
 new_list = []
 make_great(name_list, new_list)
+show_magicians(name_list)
 show_magicians(new_list)
 
 #忘记加参数,导致报错
