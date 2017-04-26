@@ -16,9 +16,9 @@ def is_prime(number):
         if number % 2 == 0:
             return False
         for current in range(3, int(math.sqrt(number)+1),2):
+            #开方取整
             if number % current == 0:
                 return False
             return True
     return False
-
-#get_primes()
+#感觉最后一个return是保险,避免内部出错误导结果
