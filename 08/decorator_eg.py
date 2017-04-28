@@ -1,15 +1,18 @@
-def salesgirl(method):
-    def serve(*args):
-        print "Salesgirl: Hello, what do you want?", method.__name__
-        result = method(*args)
-        if result:
-            print "salesgirl: This shirt is 50$."
-        else:
-            print "Salesgirl: Well, how about trying another style?"
-        return result
-    return serve
+def salesgirl(discount):
+    def expense(method):
+        def serve(*args):
+            print "Salesgirl: Hello, what do you want?", method.__name__
+            
+            result = method(*args)
+            if result:
+                print "salesgirl: This shirt is 50$. As an old user, we promised to discount at %d%%" %(discount)
+            else:
+                print "Salesgirl: Well, how about trying another style?"
+            return result
+        return serve
+    return expense
 
-@salesgirl
+@salesgirl(50)
 def try_this_shirt(size):
     if size <35:
         print "I: %d inches is to small to me" %(size)
@@ -21,4 +24,4 @@ def try_this_shirt(size):
 result = try_this_shirt(38)
 print "Mum:dou you want to buy this ", result
 
-#需求改变,函数不改变,结果加判断,输出附加信息
+#最里面函数的参数,外层函数,外层装饰器参数
