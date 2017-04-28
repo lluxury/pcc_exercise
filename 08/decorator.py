@@ -6,16 +6,17 @@ def deco(func):
     print(" after yann_func() called.")
     return func
 
+@deco
 def yann_func():
     print("yann_func() called.")
 
-yann_func = deco(yann_func)
+#yann_func = deco(yann_func)
 
 yann_func()
 yann_func()
 
-#装饰函数的参数是被装饰的函数对象，返回原函数对象
-#先执行装饰器,前,到func参数时,调用yann_func,后,完成,最后手动调用2次函数
+#语法糖
+#语法糖在前面,赋值在后面
 
 # before yann_func() called. 
 # yann_func() called.
