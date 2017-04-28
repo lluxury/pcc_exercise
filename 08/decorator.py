@@ -1,31 +1,22 @@
 def deco(func):
-    def _deco():
+    def _deco(a, b):
         print("before yann_func() called. ")
     
-        func()
+        ret = func(a, b)
     
-        print(" after yann_func() called.")
-        #return func
+        print(" after yann_func() called. result: %s" %ret)
+        return ret
     return _deco
 
 @deco
-def yann_func():
-    print("yann_func() called.")
-    return 'ok'
+def yann_func(a, b):
+    #print("yann_func() called." %(a, b))
+    print("yann_func(%s, %s) called." %(a, b))
+    return a + b
 
-yann_func()
-yann_func()
+yann_func(1, 2)
+print("\n")
+yann_func(3, 4)
 
-#先读出3个函数,调用,执行内层函数,
-'''
-使用内嵌包装函数来确保每次新函数都被调用
-内嵌包装函数的形参和返回值与原函数相同，装饰函数返回内嵌包装函数对象
-'''
-#理解,不用内嵌的时候,只有第一次路过时候,装饰,使用后,每次调用都装饰
-
-# before yann_func() called. 
-# yann_func() called.
-#  after yann_func() called.
-# before yann_func() called. 
-# yann_func() called.
-#  after yann_func() called.
+#还是粗心啊, 代码还是对比比较快
+#参数是在内层么?
