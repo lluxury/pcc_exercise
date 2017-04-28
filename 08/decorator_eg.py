@@ -1,7 +1,12 @@
 def salesgirl(method):
     def serve(*args):
         print "Salesgirl: Hello, what do you want?", method.__name__
-        return method(*args)
+        result = method(*args)
+        if result:
+            print "salesgirl: This shirt is 50$."
+        else:
+            print "Salesgirl: Well, how about trying another style?"
+        return result
     return serve
 
 @salesgirl
@@ -16,6 +21,4 @@ def try_this_shirt(size):
 result = try_this_shirt(38)
 print "Mum:dou you want to buy this ", result
 
-#希望获得结果,第4行是返回给最后1行的结果
-#先执行装饰器,然后执行调用,然后调用参数传到装饰器内部,然后执行函数
-#try_this_shirt方法需要改成带返回值 (假设是bool类型,True就是要买，False就是不想买)，那么salesgirl中的serve也应该带返回值，并且返回值就是 method(*args)
+#需求改变,函数不改变,结果加判断,输出附加信息
