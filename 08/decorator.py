@@ -47,3 +47,6 @@ if __name__=="__main__":
 #   lockerex.unlock() called.
 #   mylocker.unlock() called.
 # 7
+
+
+#后期 再回顾,不是目前可以掌握的内容 http://www.cnblogs.com/huxi/archive/2011/03/01/1967600.html
