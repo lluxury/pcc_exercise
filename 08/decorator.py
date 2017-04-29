@@ -1,44 +1,49 @@
-class locker:
-    def __init__(self):
-        print("locker.__init__() should not be called")
+from mylocker import *
+ 
+class example:
+    @lockhelper(mylocker)
+    def myfunc(self):
+        print(" myfunc() called.")
+ 
+    @lockhelper(mylocker)
+    @lockhelper(lockerex)
+    def myfunc2(self, a, b):
+        print(" myfunc2() called.")
+        return a + b
+ 
+if __name__=="__main__":
+    a = example()
+    a.myfunc()
+    print(a.myfunc())
+    print(a.myfunc2(1, 2))
+    print(a.myfunc2(3, 4))
 
-    @staticmethod
-    def acquire():
-        print("locker.acquire() called. (staticmethod)")
+#写法不规范,仅做参考
 
-    @staticmethod
-    def release():
-        print("  locker.release() called. (no object )")
-    
-def deco(cls):
-    '''cls 必须实现acquire和release静态方法'''
-    def _deco(func):
-        def __deco():
-            print("before %s called [%s]." % (func.__name__, cls))
-            cls.acquire()
-            try:
-                return func()
-            finally:
-                cls.release()
-        return __deco
-    return _deco
+# before myfunc called.
+# mylocker.acquire() called.
+#  myfunc() called.
+#   mylocker.unlock() called.
+# before myfunc called.
+# mylocker.acquire() called.
+#  myfunc() called.
+#   mylocker.unlock() called.
+# None
 
-@deco(locker)
-def yann_func():
-    print(" yann_func() called.")
+# before __deco called.
+# mylocker.acquire() called.
+# before myfunc2 called.
+# lockerex.acquire() called.
+#  myfunc2() called.
+#   lockerex.unlock() called.
+#   mylocker.unlock() called.
+# 3
 
-yann_func()
-yann_func()
-
-
-#让装饰器带类参数? 可以直接使用??
-
-# before yann_func called [<class '__main__.locker'>].
-# locker.acquire() called. (staticmethod)
-#  yann_func() called.
-#   locker.release() called. (no object )
-
-# before yann_func called [<class '__main__.locker'>].
-# locker.acquire() called. (staticmethod)
-#  yann_func() called.
-#   locker.release() called. (no object )
+# before __deco called.
+# mylocker.acquire() called.
+# before myfunc2 called.
+# lockerex.acquire() called.
+#  myfunc2() called.
+#   lockerex.unlock() called.
+#   mylocker.unlock() called.
+# 7
