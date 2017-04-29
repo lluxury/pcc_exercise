@@ -1,36 +1,44 @@
-def deco(func):
-    def _deco(*args, **kwargs):
-        '''参数用(*args, **kwargs)，自动适应变参和命名参数'''
-        print("before %s called. " % func.__name__)
+class locker:
+    def __init__(self):
+        print("locker.__init__() should not be called")
+
+    @staticmethod
+    def acquire():
+        print("locker.acquire() called. (staticmethod)")
+
+    @staticmethod
+    def release():
+        print("  locker.release() called. (no object )")
     
-        ret = func(*args, **kwargs)
-    
-        #print(" after yann_func() called. result: %s" % (func.__name__, ret))
-        print("  after %s called. result: %s" % (func.__name__, ret))
-        return ret
+def deco(cls):
+    '''cls 必须实现acquire和release静态方法'''
+    def _deco(func):
+        def __deco():
+            print("before %s called [%s]." % (func.__name__, cls))
+            cls.acquire()
+            try:
+                return func()
+            finally:
+                cls.release()
+        return __deco
     return _deco
 
-@deco
-def yann_func(a, b):
-    #print("yann_func() called." %(a, b))
-    print("yann_func(%s, %s) called." % (a, b))
-    return a + b
+@deco(locker)
+def yann_func():
+    print(" yann_func() called.")
 
-@deco
-def yann_func2(a, b, c):
-    print("myfunc2(%s,%s,%s) called." % (a, b, c))
-    return a + b + c
-
-yann_func(1, 2)
-print("\n")
-yann_func(3, 4)
-
-yann_func2(1, 3, 4)
-print("\n")
-yann_func2(3, 4, 5)
+yann_func()
+yann_func()
 
 
-#还是粗心啊, 代码还是对比比较快
-#参数是在内层么?
-#再一次粗心,一个位置与2个参数
-#http://www.cnblogs.com/rhcad/archive/2011/12/21/2295507.html
+#让装饰器带类参数? 可以直接使用??
+
+# before yann_func called [<class '__main__.locker'>].
+# locker.acquire() called. (staticmethod)
+#  yann_func() called.
+#   locker.release() called. (no object )
+
+# before yann_func called [<class '__main__.locker'>].
+# locker.acquire() called. (staticmethod)
+#  yann_func() called.
+#   locker.release() called. (no object )
