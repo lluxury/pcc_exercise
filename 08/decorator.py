@@ -1,36 +1,53 @@
-def deco(func):
-    def _deco(*args, **kwargs):
-        '''参数用(*args, **kwargs)，自动适应变参和命名参数'''
-        print("before %s called. " % func.__name__)
-    
-        ret = func(*args, **kwargs)
-    
-        #print(" after yann_func() called. result: %s" % (func.__name__, ret))
-        print("  after %s called. result: %s" % (func.__name__, ret))
-        return ret
-    return _deco
+from mylocker import *
+ 
+class example:
+    @lockhelper(mylocker)
+    def myfunc(self):
+        print(" myfunc() called.")
+ 
+    @lockhelper(mylocker)
+    @lockhelper(lockerex)
+    def myfunc2(self, a, b):
+        print(" myfunc2() called.")
+        return a + b
+ 
+if __name__=="__main__":
+    a = example()
+    a.myfunc()
+    print(a.myfunc())
+    print(a.myfunc2(1, 2))
+    print(a.myfunc2(3, 4))
 
-@deco
-def yann_func(a, b):
-    #print("yann_func() called." %(a, b))
-    print("yann_func(%s, %s) called." % (a, b))
-    return a + b
+#写法不规范,仅做参考
 
-@deco
-def yann_func2(a, b, c):
-    print("myfunc2(%s,%s,%s) called." % (a, b, c))
-    return a + b + c
+# before myfunc called.
+# mylocker.acquire() called.
+#  myfunc() called.
+#   mylocker.unlock() called.
+# before myfunc called.
+# mylocker.acquire() called.
+#  myfunc() called.
+#   mylocker.unlock() called.
+# None
 
-yann_func(1, 2)
-print("\n")
-yann_func(3, 4)
+# before __deco called.
+# mylocker.acquire() called.
+# before myfunc2 called.
+# lockerex.acquire() called.
+#  myfunc2() called.
+#   lockerex.unlock() called.
+#   mylocker.unlock() called.
+# 3
 
-yann_func2(1, 3, 4)
-print("\n")
-yann_func2(3, 4, 5)
+# before __deco called.
+# mylocker.acquire() called.
+# before myfunc2 called.
+# lockerex.acquire() called.
+#  myfunc2() called.
+#   lockerex.unlock() called.
+#   mylocker.unlock() called.
+# 7
 
 
-#还是粗心啊, 代码还是对比比较快
-#参数是在内层么?
-#再一次粗心,一个位置与2个参数
-#http://www.cnblogs.com/rhcad/archive/2011/12/21/2295507.html
+#后期 再回顾,不是目前可以掌握的内容 http://www.cnblogs.com/huxi/archive/2011/03/01/1967600.html
+#http://pythonhosted.org/decorator/documentation.html
