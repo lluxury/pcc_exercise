@@ -51,3 +51,20 @@ python manage.py migrate
 #每当需要修改“学习笔记”管理的数据时，都采取如下三个步骤：修改models.py；对learning_logs 调用makemigrations；让Django迁移项目
 
 
+#管理网站
+python manage.py createsuperuser
+cd learning_logs
+vi admin.py
+
+
+#定义模型Entry
+vi models.py
+
+#python manage.py makemigrations app_name
+python manage.py makemigrations learning_logs
+python manage.py migrate
+#注册模型
+vi admin.py
+
+
+
