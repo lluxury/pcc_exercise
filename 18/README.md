@@ -32,7 +32,7 @@ python manage.py migrate
 python manage.py runserver
 #curl 127.0.0.1:8000|grep worked
 
-#要后台运行么,每次进入bash都要开启环境?
+#要后台运行么,每次进入bash都要开启环境? 确认
 
 python manage.py startapp learning_logs
 
@@ -65,6 +65,32 @@ python manage.py makemigrations learning_logs
 python manage.py migrate
 #注册模型
 vi admin.py
+
+#django shell
+source ll_env/bin/activate
+python manage.py shell
+
+from learning_logs.models import Topic
+Topic.objects.all()
+
+topics = Topic.objects.all()
+for topic in topics:
+	print(topic.id, topic)
+
+t = Topic.objects.get(id=1)
+t.text
+t.date_added
+
+t.entry_set.all()
+
+
+
+
+#创建网页
+#流程 定义URL、编写视图和编写模板, 每个url都有映射视图,视图通常调用一个模板
+
+
+
 
 
 
