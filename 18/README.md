@@ -23,6 +23,8 @@ pip install Django
 #Django-1.11.1
 
 #Django仅在虚拟环境处于活动状态时才可用
+#一开始就应该上传所有文档,除了虚拟环境
+
 django-admin.py startproject learning_log .
 
 python manage.py migrate
@@ -30,5 +32,22 @@ python manage.py migrate
 python manage.py runserver
 #curl 127.0.0.1:8000|grep worked
 
+#要后台运行么,每次进入bash都要开启环境?
+
+python manage.py startapp learning_logs
+
+cd learning_logs/
+vi models.py 
+#https://docs.djangoproject.com/en/1.11/ref/models/fields/
+
+cd learning_log/
+vi settings.py
+
+python manage.py makemigrations learning_logs
+#生成修改方法
+
+python manage.py migrate
+#更新数据库
+#每当需要修改“学习笔记”管理的数据时，都采取如下三个步骤：修改models.py；对learning_logs 调用makemigrations；让Django迁移项目
 
 
