@@ -105,6 +105,7 @@ cd learning_logs/templates/learning_logs/
 vi base.html
 index.html
 
+#占狗
 #主题页及详情页
 vi learning_logs/urls.py
 vi learning_logs/views.py 
@@ -112,9 +113,16 @@ cd learning_logs/templates/learning_logs/
 vi topics.html
 vi base.html 
 
+vi learning_logs/urls.py
+# /(?P<topic_id>\d+)/ 匹配两个斜杠中的整数,并存在topic_id中
 
+vi learning_logs/views.py
+touch learning_logs/templates/learning_logs/topic.html
+vi learning_logs/templates/learning_log/topic.html
+#<a herf="{% url 'learning_logs:topic' topic.id %}"">{{ topic }}</a>
+#一个小错误耽误1小时,还不报错,虽然开头就看了,但还是看的不仔细orz
 
-
+vi learning_logs/templates/learning_log/topics.html
 
 
 

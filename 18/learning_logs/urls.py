@@ -8,4 +8,8 @@ urlpatterns = [
     
     #显示所有主题
     url(r'^topics/$', views.topics, name='topics'),
+
+    # 详情页
+    url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
+    #url(r'^topics/(?P<topic_id\d+>)/$', views.topic, name='topic'),
 ]
