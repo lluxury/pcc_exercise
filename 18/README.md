@@ -88,6 +88,19 @@ t.entry_set.all()
 
 #创建网页
 #流程 定义URL、编写视图和编写模板, 每个url都有映射视图,视图通常调用一个模板
+vi learning_log/urls.py
+vi learning_logs/urls.py
+vi learning_logs/views.py 
+
+cd /var/learning_log/learning_logs/
+mkdir template
+cd template/
+mkdir learning_logs
+cd learning_logs/
+touch index.html
+
+
+
 
 
 
