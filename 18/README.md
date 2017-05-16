@@ -98,8 +98,19 @@ cd template/
 mkdir learning_logs
 cd learning_logs/
 touch index.html
+vi index.html
 
+#模板
+cd learning_logs/templates/learning_logs/
+vi base.html
+index.html
 
+#主题页及详情页
+vi learning_logs/urls.py
+vi learning_logs/views.py 
+cd learning_logs/templates/learning_logs/
+vi topics.html
+vi base.html 
 
 
 
