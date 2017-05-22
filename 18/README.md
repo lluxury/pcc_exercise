@@ -124,5 +124,18 @@ vi learning_logs/templates/learning_log/topic.html
 
 vi learning_logs/templates/learning_log/topics.html
 
+https://docs.djangoproject.com/en/1.11/ref/templates/
 
+
+#用户添加主题
+cd learning_logs/
+vi forms.py
+vi forms.py
+vi urls.py 
+vi views.py 
+cd templates/learning_logs/
+vi new_topic.html
+vi topics.html 
+
+#需要通过管理页面操作,限制未知
 
