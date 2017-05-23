@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 #from django.core.ulresolvers import reverse
 from django.core.urlresolvers import reverse
 
-from .models import Topic
+from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
 # Create your views here.
@@ -59,3 +59,23 @@ def new_entry(request, topic_id):
 
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
+
+def edit_entry(request, entry_id):
+    '''edit entry'''
+    #entry = Entry.obejcts.get(id=entry_id)
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if request.method != 'POST':
+        #first requeest use current fill form
+        form = EntryForm(instance=entry)
+    else:
+        #POST提交的请求,对数据进行处理
+        form = EntryForm(instance=entry, data = request.POST)
+        if form.is_valid():
+            form.save()
+            #return HttpResponseRedirect(reverse{'learning_logs:topic', args=[topic.id]})
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
+
+    context = {'entry': entry, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_entry.html', context)

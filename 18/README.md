@@ -147,3 +147,12 @@ cd templates/learning_logs/
 vi new_entry.html
 vi /var/learning_log/learning_logs/views.py
 vi /var/learning_logs/templates/learning_logs/topic.html
+
+#还有一个疑问, 为什么走admin就不报错了? admin走的是自己的方法
+
+#编辑文章
+cd learning_logs/
+vi urls.py 
+vi views.py 
+vi templates/learning_logs/edit_entry.html
+vi templates/learning_logs/topic.html 
