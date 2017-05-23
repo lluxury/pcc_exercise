@@ -16,4 +16,6 @@ urlpatterns = [
     #添加新主题
     #url(r'^new_topic/$, views.new_topic, name='new_topic'),
     url(r'^new_topic/$', views.new_topic, name='new_topic'),
+    #添加文章
+    url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
 ]

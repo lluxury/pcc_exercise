@@ -130,12 +130,20 @@ https://docs.djangoproject.com/en/1.11/ref/templates/
 #用户添加主题
 cd learning_logs/
 vi forms.py
-vi forms.py
 vi urls.py 
 vi views.py 
 cd templates/learning_logs/
 vi new_topic.html
 vi topics.html 
 
-#需要通过管理页面操作,限制未知
-
+#需要通过管理页面操作,限制未知,教程不用,后面复习时排查
+#用户添加文章
+cd learning_logs/
+vi forms.py 
+vi urls.py 
+vi views.py 
+#widgets 小部件,表单元素
+cd templates/learning_logs/
+vi new_entry.html
+vi /var/learning_log/learning_logs/views.py
+vi /var/learning_logs/templates/learning_logs/topic.html
