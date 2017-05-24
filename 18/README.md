@@ -177,3 +177,26 @@ vi users/urls.py
 vi users/views.py 
 vi users/templates/users/register.html
 vi learning_logs/templates/learning_logs/base.html
+
+#用户自己数据
+#限制页面
+vi learning_logs/views.py 
+vi learning_log/settings.py 
+vi /var/learning_log/learning_logs/views.py
+vi learning_logs/views.py 
+
+#关联数据到用户
+vi learning_logs/models.py 
+python manage.py shell
+from django.contrib.auth.models import User
+User.objects.all()
+for user in User.objects.all():
+    print(user.username, user.id)
+
+python manage.py makemigrations learning_logs	#1
+python manage.py migrate
+python manage.py shell
+from learning_logs.models import Topic
+for topic in Topic.objects.all():
+    print(topic, topic.owner)
+
