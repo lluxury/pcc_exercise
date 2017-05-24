@@ -200,3 +200,8 @@ from learning_logs.models import Topic
 for topic in Topic.objects.all():
     print(topic, topic.owner)
 
+#保护用户主题
+vi learning_logs/views.py
+vi learning_logs/views.py
+vi learning_logs/views.py
+#对于访问
