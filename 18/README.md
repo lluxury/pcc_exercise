@@ -156,3 +156,13 @@ vi urls.py
 vi views.py 
 vi templates/learning_logs/edit_entry.html
 vi templates/learning_logs/topic.html 
+
+#创建用户帐户
+#分层设计 项目(app,app) 每个有自己的url和view等,递归控制
+python manage.py startapp users
+vi learning_log/settings.py 
+vi learning_log/urls.py 
+vi users/urls.py
+mkdir -p users/templates/users
+vi users/templates/users/login.html
+vi learning_logs/templates/learning_logs/base.html
