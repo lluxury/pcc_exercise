@@ -166,3 +166,7 @@ vi users/urls.py
 mkdir -p users/templates/users
 vi users/templates/users/login.html
 vi learning_logs/templates/learning_logs/base.html
+#注销
+vi users/urls.py 
+vi users/views.py 
+vi learning_logs/templates/learning_logs/base.html 
