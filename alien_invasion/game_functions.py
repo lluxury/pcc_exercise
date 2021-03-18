@@ -97,3 +97,5 @@ def create_fleet(ai_settings, screen, ship, aliens):
             create_alien(ai_settings, screen, aliens, alien_number,
                 row_number)
 
+def update_aliens(aliens):
+    aliens.update()
