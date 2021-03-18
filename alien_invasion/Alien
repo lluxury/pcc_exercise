@@ -1,0 +1,328 @@
+### 架构
+"""
+在游戏《外星人入侵》中，玩家控制着一艘最初出现在屏幕底部中央的飞船。玩家可以使用箭头键左右移动飞船，还可使用空格键进行射击。游戏开始时，一群外星
+人出现在天空中，他们在屏幕中向下移动。玩家的任务是射杀这些外星人。玩家将所有外星人都消灭干净后，将出现一群新的外星人，他们移动的速度更快。只要有
+外星人撞到了玩家的飞船或到达了屏幕底部，玩家就损失一艘飞船。玩家损失三艘飞船后，游戏结束。
+"""
+
+alien.py
+alien_invasion.py
+bullet.py
+settings.py
+game_functions.py
+game_stats.py
+ship.py
+
+
+1. 初始化
+
+#安装
+
+#开始
+
+def run_game():
+    # 初始化游戏并创建一个屏幕对象
+    pygame.init() 
+    screen = pygame.display.set_mode((1200, 800))
+    # 该 surface 屏幕一部分，用于显示元素，怪物和飞船都是surface
+    
+    pygame.display.set_caption("Alien Invasion")
+    # 开始游戏的主循环
+    while True:
+        # 访问Pygame检测到的事件 鼠标键盘
+        for event in pygame.event.get(): 
+            if event.type == pygame.QUIT:
+        sys.exit()
+        # 让最近绘制的屏幕可见？
+        pygame.display.flip()
+    # 每次循环都自动重绘这个surface   
+
+
+# 初始化
+# 屏幕
+# 标题
+# 循环
+#   触发结束
+# 屏幕可见
+
+#背景
+bg_color = (230, 230, 230)
+screen.fill(ai_settings.bg_color) # 循环时覆盖颜色
+
+
+#配置项
+class Settings():
+    def __init__(self):
+        pass
+#各种配置丢进来，重要，舒服
+
+2. 飞船
+
+#ship
+class Ship():
+    def __init__(self, screen):
+        pass
+self.rect = self.image.get_rect()   # 获取船surface的属性rect ，有4角和中心坐标
+self.screen_rect = screen.get_rect()    # 获取屏幕的 rect
+
+     def blitme(self):
+        """在指定位置绘制飞船"""
+        self.screen.blit(self.image, self.rect)
+# 图，背景，相对位置，绘图 0.0 在左上角
+图片画在底座上
+
+
+#绘制
+ship = Ship(screen)
+
+ship.blitme() # 循环里调用，画背景，画船
+
+
+#重构
+def check_events():
+    pass
+
+def update_screen(ai_settings, screen, ship): # 刷屏幕，画船
+    pass
+
+# 把循环和功能拿出来，单独成函数    
+
+3. 移动
+
+#响应按键
+# 每当用户按键时，都将在Pygame中注册一个事件
+def check_events(ship):
+    pass
+    # 更新 检测函数，加参数，响应右方向键
+# 每次循环按键触发画画
+
+#保持移动
+# 状态方法
+class Ship():
+    def update(self):
+        pass
+
+def check_events(ship):
+    pass
+
+#按下放开做成开关，每次循环检查状态移动
+ship.moving_right = True
+
+# 在主循环中加入刚写的函数 ship.update()
+
+#左右移动
+# 同上，参考的代码最好写
+# 但注意左右一起按的情况
+
+#速度
+# setting里把固定的值变成变量，需要处理数值类型问题
+self.ship_speed_factor = 0.5
+
+# 定义浮点中间变量
+        self.center = float(self.rect.centerx)
+
+#活动范围
+# 简单，左边大于0，右边小于屏幕值
+xx < self.screen_rect.right # 屏幕精灵的矩形右边
+
+# 这样下去 check_events() 越来越长，重构
+def check_keydown_events(event, ship):
+    pass：
+def check_keyup_events(event, ship):
+    pass：
+
+# 原地拆分，由原函数调用
+
+
+
+4. 射击
+
+#子弹设置
+# 更新配置文件，子弹的属性
+
+#Bullet类
+class Bullet(Sprite):
+    """一个对飞船发射的子弹进行管理的类"""
+    def __init__(self, ai_settings, screen, ship):
+        super(Bullet, self).__init__()
+        pass # 位置，创建矩形，x，top，y，颜色，速度
+
+# 相关的元素编组，同时操作编组中的所有元素
+# 调用super() 来继承Sprite
+    def update(self):
+        pass  #更新子弹y值，赋值
+    def draw_bullet(self):
+        pass # 画子弹
+#子弹存储
+bullets = Group()
+# 创建一个用于存储子弹的编组
+ bullets.update() # 循环中子弹更新
+#开火
+ def check_keydown_events(event, ai_settings, screen, ship, bullets):
+    new_bullet = Bullet(ai_settings, screen, ship)
+    bullets.add(new_bullet)
+# 按空格，创建实例，加入编组
+
+for bullet in bullets.sprites():
+    bullet.draw_bullet()
+# 在绘屏幕时，遍历子弹，重绘
+
+#减少
+for bullet in bullets.copy(): 
+    if bullet.rect.bottom <= 0: 
+        bullets.remove(bullet) 
+
+#限制数量
+self.bullets_allowed = 3 # 循环前判断
+
+# 直线是因为没有背景
+
+5. 敌人
+
+#敌人类
+class Alien(Sprite):
+    def __init__(self, ai_settings, screen):
+        pass
+# 图，rect，xy，x，绘制
+#实例
+alien = Alien(ai_settings, screen)
+
+#显示
+def update_screen(ai_settings, screen, ship, alien, bullets):
+    pass # 更新屏幕，子弹，飞船，外星人
+    aliens.draw(screen)
+
+6. 一群敌人
+
+#行容纳数
+alien = Alien(ai_settings, screen)
+alien_width = alien.rect.width 
+available_space_x = ai_settings.screen_width - 2 * alien_width  # 宽度
+number_aliens_x = int(available_space_x / (2 * alien_width))  # 个数
+
+aliens = Group()
+aliens.draw(screen)
+
+
+#多行
+aliens = Group()
+gf.create_fleet(ai_settings,screen,ship,aliens)
+
+aliens.draw(screen)
+
+def create_fleet(ai_settings, screen, aliens):
+    pass 
+    # 遍历个数，创建，重构
+#敌人群体
+available_space_y = ai_settings.screen_height – 3 * alien_height – ship_height
+number_rows = available_height_y / (2 * alien_height)
+
+
+for row_number in range(number_rows):
+    for alien_number in range(number_aliens_x):
+        create_alien(ai_settings, screen, aliens, alien_number,row_number)
+
+7. 敌人移动
+
+#右移
+# 类似子弹移动，在循环时更新
+
+#方向设置
+# 移动，下坠，方向
+
+#边缘检测
+#下移敌人群体
+def check_fleet_edges(ai_settings, aliens):
+    pass # 到达边缘改变方便
+def change_fleet_direction(ai_settings, aliens):
+    pass # 触边时，改变方向，下移
+
+8. 射击敌人
+
+#子弹碰撞
+# 使用sprite.groupcollide() 检测两个编组的成员之间的碰撞，后面是消灭设置
+def update_bullets(aliens, bullets):
+    pass
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True) 
+
+#大子弹
+bullet_width=300
+#新敌人
+if len(aliens) == 0:
+    create_fleet(ai_settings, screen, ship, aliens)
+#提高速度
+
+
+9. 结束
+# 是否到达底部，是否碰撞
+check_fleet_edges(ai_settings, aliens)
+
+if pygame.sprite.spritecollideany(ship, aliens):
+    pass
+
+# 重置：删除船和子弹，船居中，创建新外星人
+
+class GameStats():
+    def __init__(self, ai_settings):
+        self.reset_stats()   # 单实例
+    def reset_stats(self):
+        pass # 统计数据
+
+stats = GameStats(ai_settings)  # 建立实例，用来穿参
+#检测碰撞
+#响应碰撞
+def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
+    pass # 重置工作
+def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
+    pass
+
+def center_ship(self):
+    pass
+#敌人上垒
+def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites(): 
+        if alien.rect.bottom >= screen_rect.bottom:
+            pass # 调用碰撞
+
+#结束处理
+self.game_active = True  # 循环标志
+#检查生命
+# 需要标志控制的循环
+
+10. play按钮
+
+ #Button类
+class Button():
+    def __init__(self, ai_settings, screen, msg):
+        pass# 属性，尺寸，颜色，文字，位置，矩形，信息
+    def prep_msg(self, msg):
+        pass # 文字渲染图像
+
+    def draw_button(self):
+        pass # 先绘制颜色，再绘制文字
+play_button = Button(ai_settings, screen, "Play")
+update_screen(...,play_button)
+# 更新屏幕时触发，非激活状态就绘制
+
+ #开始
+ #重置
+ #禁用按钮
+ #隐藏光标
+
+11. 等级
+
+ #修改速度
+ #重置速度
+
+12. 记分
+
+ #显示得分
+ #记分牌
+ #更新得分
+ #点数计分
+ #提高点数
+ #得分圆整？
+ #最高
+ #显示得分
+ #显示生命
