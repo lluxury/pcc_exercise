@@ -90,7 +90,7 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship,
 
     if collisions:
         for aliens in collisions.values():
-            stats.score +=  ai_settings.alien_points
+            stats.score += ai_settings.alien_points * len(aliens)
             sb.prep_score()
 
     if len(aliens) == 0:
