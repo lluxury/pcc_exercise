@@ -298,31 +298,119 @@ class Button():
         pass# 属性，尺寸，颜色，文字，位置，矩形，信息
     def prep_msg(self, msg):
         pass # 文字渲染图像
-
+ 
     def draw_button(self):
         pass # 先绘制颜色，再绘制文字
 play_button = Button(ai_settings, screen, "Play")
-update_screen(...,play_button)
-# 更新屏幕时触发，非激活状态就绘制
+
+gf.update_screen(...,play_button)
+# 更新屏幕时触发，
+# 创建实例，更新屏幕时用到，添加 play_button 参数
+# 当非激活状态绘制按钮
 
  #开始
+gf.check_events(... play_button)
+# 鼠标触发时检测范围
+def check_play_button(stats, play_button, mouse_x, mouse_y):
+    pass # 按钮的矩形和鼠标的 x，y 冲突，状态为激活
+
  #重置
+ gf.check_play_button(...,ai_settings, screen,  ship,
+        aliens, bullets)
+# 状态重置，敌人和子弹置空，建造敌人群，飞船归位
+# check_events 中，检测鼠标调用的函数参数多了
+
  #禁用按钮
+ gf.check_play_button()
+ # 2个触发条件，按钮位置被点到，stats.game_active 没激活
+ # 注意有程序标志和游戏标志，上面是游戏标志
+
  #隐藏光标
+check_play_button() # 点完开始隐藏
+ship_hit() # 检测完碰撞然后恢复
 
 11. 等级
 
  #修改速度
+ check_bullet_alien_collisions() # 增加设置里子弹的速度
+ setting.initialize_dynamic_settings()
+ setting.increase_speed()
+ # 配置文件里调的函数，用于修改配置值
+
  #重置速度
+gf.check_play_button() 
+ai_settings.initialize_dynamic_settings()
+# 点开始的时候，把速度变回去
 
 12. 记分
 
  #显示得分
+ class Scoreboard():
+    def __init__(self, ai_settings, screen, stats):
+        pass # 初始矩形，颜色，字体，文字转图片
+
+    def prep_score(self):
+        pass # 生成矩形，确定位置
+
+    def show_score(self):
+        pass # 在屏幕上绘图    
+# 其他几个显示组件也是类似的
+           
  #记分牌
+gf.update_screen(... sb)
+  sb.show_score() # 画完敌人，绘制得分 
+
  #更新得分
+ # 配置文件中增加定义
+ gf.update_bullets(... stats, sb)
+ gf.check_bullet_alien_collisions(..., stats, sb)
+ # 如果发生碰撞,调用 sb.prep_score() 更新状态上的分数，刷新显示
+
  #点数计分
- #提高点数
- #得分圆整？
+     if collisions:
+        for aliens in collisions.values():
+            stats.score += ai_settings.alien_points * len(aliens)
+# 避免有同时击中，的计算失误
+
+ #提高怪物点数
+ self.score_scale = 1.5
+ self.alien_points = int(self.alien_points * self.score_scale)
+
+
+ #得分圆整
+ scoreboard.prep_score
+        rounded_score = int(round(self.stats.score, -1))
+        score_str = "{:,}".format(rounded_score)
+# 取整及格式化千分位  
+
  #最高
- #显示得分
+  # 配置文件中增加定义
+ scoreboard.prep_high_score() #同上, 构造,显示
+gf.check_bullet_alien_collisions # 碰撞后检测积分
+gf.check_high_score(stats, sb):
+    pass# 发现最高就替换
+
+ #显示级别
+ gf.check_events(..., sb)
+ gf.check_play_button(..., stats, sb)
+ # 点开始时,刷新记分版
+ gf.check_bullet_alien_collisions()
+ # 敌人全灭时，级别增加，刷新级别
+ # 其他同最高分模块 ，配置，转图像，绘图
+ 
  #显示生命
+ # ship 引入精灵
+ class Ship(Sprite):
+    def __init__(self, ai_settings, screen):
+        super(Ship, self).__init__()
+
+# prep_ships() 同上
+# 根据配置，生成ship图标，加入ships组
+self.ships.draw(self.screen) # 区别是绘图方式不同     
+
+gf.update_aliens(..., aliens)
+    ship_hit(..., aliens)
+    check_aliens_bottom(..., aliens)
+
+gf.ship_hit(..., aliens)
+sb.prep_ships() # 减少生命时刷新船数
