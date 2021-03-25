@@ -40,6 +40,8 @@ plt.plot(input_value,squares, linewidth=5)
 ```python
 plt.scatter(2,4)
 plt.show()
+
+plt.scatter(x_values, y_values, edgecolor='none', s=40)
 ```
 
 

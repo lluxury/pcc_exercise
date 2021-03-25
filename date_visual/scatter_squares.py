@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 
 x_value = list(range(1,1001))
 y_values = [x**2 for x in x_value]
-plt.scatter(x_value, y_values, s=40)
+# plt.scatter(x_value, y_values,c='red',edgecolors='none', s=40)
+plt.scatter(x_value, y_values,c=(0,0,0.8),edgecolors='none', s=40)
 
 plt.title("Square Numbers", fontsize=24)
 plt.xlabel("Value", fontsize=14)
