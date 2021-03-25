@@ -9,7 +9,7 @@ pip install --user matplotlib
 
  安装Matplotlib　
 
-###  绘制简单的折线图　
+####  绘制简单的折线图　
 
 ```python
 import matplotlib.pyplot as plt
@@ -22,6 +22,23 @@ plt.title("Square Numbers", fontsize=24)
 plt.xlabel("Value", fontsize=14)
 plt.ylabel("Square of Value", fontsize=14)
 plt.tick_params(axis='both', labelsize=14)
+plt.show()
+```
+
+#### 矫正图形
+
+注意！，上图数据不准，刻度默认从零开始，矫正如下，推荐
+
+```python
+input_value = [1,2,3,4,5]
+squares = [1,4,9,16,25]
+plt.plot(input_value,squares, linewidth=5)
+```
+
+#### 散点图
+
+```python
+plt.scatter(2,4)
 plt.show()
 ```
 
